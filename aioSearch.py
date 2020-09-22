@@ -19,14 +19,15 @@ print("""\
 links = []
 
 filename = 'C:\\Users\\TestoW\\Documents\\Coding\\definition-search\\searches.txt'
-hook = Webhook('')
-if hook == '':
-    hook = input("What's the webhook? ")
-else:
-    print("Webhook detected")
-
+hook = Webhook(
+    'WEBHOOK HERE')
+# if hook == '':
+#     hook = input("What's the webhook? ")
+# else:
+#     print("Webhook detected")
 
 def successhook():
+    
 
     embed = Embed(
         title='AIO Search Executed Successfully',
@@ -36,6 +37,11 @@ def successhook():
     )
 
     image1 = 'https://avatars2.githubusercontent.com/u/25069719?s=460&u=0758922d6a85a09f971fbf778bb720788a2f2e5b&v=4'
+
+    with open('https://avatars2.githubusercontent.com/u/25069719?s=460&u=0758922d6a85a09f971fbf778bb720788a2f2e5b&v=4', rb) as f:
+        image1 = f.read()  # bytes
+    
+    hook.modify(name='AIO Search', avatar=image1)
 
     embed.set_footer(text='AIO Search | Made by iHildy#3839', icon_url=image1)
 
@@ -51,8 +57,7 @@ def badhook():
  
     image1 = 'https://avatars2.githubusercontent.com/u/25069719?s=460&u=0758922d6a85a09f971fbf778bb720788a2f2e5b&v=4'
 
-    embed.add_field(name='Test Field', value='Value of the field :open_mouth:')
-    embed.add_field(name='Another Field', value='1234 :smile:')
+    # hook.modify(name='AIO Search', avatar=image1)
     embed.set_footer(text='AIO Search | Made by iHildy#3839', icon_url=image1)
 
     hook.send(embed=embed)
@@ -67,30 +72,31 @@ def aiosearch():
                 if link != '':
                     if re.match('http://.+|https://.+|ftp://.+|file://.+', link.lower()):
                         links.append(link)
-                        successhook()
                     elif searchtype == "1":
                         links.append('https://www.google.com/search?q=' + link)
-                        successhook()
+                        success = True
                     elif searchtype == "2":
                         subject = input("What subject/class is this for? ")
                         links.append('https://www.google.com/search?q=' + link + ' ' + subject + ' definition')
-                        successhook()
+                        success = True
                     elif searchtype == "3":
                         links.append('http://maps.google.com/?q=' + link)
-                        successhook()
+                        success = True
                     elif searchtype == "4":
                         links.append('https://www.youtube.com/results?search_query=' + link)
-                        successhook()
+                        success = True
                     elif searchtype == "5":
                         links.append('https://github.com/search?q=' + link)
-                        successhook()
+                        success = True
                     elif searchtype == "6":
                         links.append('https://stackoverflow.com/search?q=' + link)
-                        successhook()
+                        success = True
                     else:
+                        success = False 
                         print(
                             "Something went wrong, you might not have typed the number in right.")
                         badhook()
+        if success: successhook()
 
     except IOError:
         print('Something went wrong, make sure you filled the searches.txt file correctly, and gave the program the correct path inside')
@@ -103,3 +109,10 @@ def aiosearch():
 
 
 aiosearch()
+
+
+# To do!
+# > Fix repeating elifs
+# > Add cheating and non-cheat mode
+# > Add more error handling
+# > Comment code and add discriptions
