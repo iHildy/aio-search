@@ -19,8 +19,7 @@ print("""\
 links = []
 
 filename = 'C:\\Users\\TestoW\\Documents\\Coding\\definition-search\\searches.txt'
-hook = Webhook(
-    'WEBHOOK HERE')
+hook = Webhook('WEBHOOK HERE')
 # if hook == '':
 #     hook = input("What's the webhook? ")
 # else:
@@ -105,14 +104,4 @@ def aiosearch():
     for lnk in links:
         webbrowser.open_new_tab(lnk)
 
-
-
-
 aiosearch()
-
-
-# To do!
-# > Fix repeating elifs
-# > Add cheating and non-cheat mode
-# > Add more error handling
-# > Comment code and add discriptions
