@@ -18,7 +18,7 @@ print("""\
 
 links = []
 
-filename = 'C:\\Users\\TestoW\\Documents\\Coding\\definition-search\\searches.txt'
+filename = 'searches.txt'
 hook = Webhook('WEBHOOK HERE')
 # if hook == '':
 #     hook = input("What's the webhook? ")
